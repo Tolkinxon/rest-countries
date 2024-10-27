@@ -1,0 +1,128 @@
+*,
+::before,
+::after{
+    box-sizing: border-box;
+  }
+
+  html {
+    height: 100%;
+  }
+  
+  body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fafafa;
+    color:#111517;
+    font-family: "Nunito Sans";
+  }
+
+  .main {
+    flex-grow: 1;
+  }
+  
+  ul, ol {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+
+
+/* FONTS START */
+@font-face {
+    font-display: swap; 
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/nunito-sans-v15-latin-regular.woff2') format('woff2'); 
+  }
+  /* nunito-sans-600 - latin */
+  @font-face {
+    font-display: swap; 
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 600;
+    src: url('../fonts/nunito-sans-v15-latin-600.woff2') format('woff2'); 
+  }
+  @font-face {
+    font-display: swap;
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 800;
+    src: url('../fonts/nunito-sans-v15-latin-800.woff2') format('woff2'); 
+  }
+/* FONTS END */
+
+
+.header {
+    background-color: #fff;
+    margin-bottom: 48px;
+}
+
+  .header-container {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+
+  .header__heading {
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 32.74px;
+    text-align: left;
+  }
+
+  .header__modes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .header__modes p {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 21.82px;
+    text-align: left;
+  }
+
+ 
+
+  
