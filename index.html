@@ -21,13 +21,24 @@
 
     <main>
         <section class="form">
-            <form class="form__form">
-                <input class="form__input" type="text">
+            <div class="container">
+                <form class="form__form">
+                    <label class="form__label">
+                        <input class="form__input" type="text" placeholder="Search for a country…">
+                        <img src="img/icon-search-black.svg" alt="light mode searcha icon">
+                    </label>
 
-                <select class="form__select" name="" id="">
-                    <option value=""></option>
-                </select>
-            </form>
+                    <div class="form__select-wrapper js-form__select-wrapper">
+                        <img src="img/Group 2.svg" alt="light mode select icon">
+                        <select class="form__select">
+                            <option value="" disabled selected hidden>Filter by Region</option>
+                            <option value="">Africa</option>
+                            <option value="">America</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+
         </section>
     </main>
     

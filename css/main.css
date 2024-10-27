@@ -123,6 +123,79 @@
     text-align: left;
   }
 
+  .form__form {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+  }
+
+  .form__label {
+    position: relative;
+    max-width: 480px;
+    width: 100%;
+    
+  }
+
+  .form__label img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 34px;
+  }
+
+  .form__input {
+    width: 100%;
+    height: 56px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    padding: 20px 0px;
+    box-shadow: 0px 0px 6px 0px rgba(204, 201, 201, 0.616);
+    text-indent: 74px;
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    color: #848484;
+    border: none;
+    outline: none;
+  }
+
+  .form__select-wrapper {
+    position: relative;
+    max-width: 200px;
+    width: 100%;
+  }
+
+  .form__select-wrapper img  {
+    position: absolute;
+    top: calc(50% - 3px);
+    right: 0px;
+    background-color: white;
+    padding-right: 22px;
+}
+
+.rotate {
+    /* transform-origin: center; */
+    transform: rotateX(3.142rad) !important;
+  }
+
+  .form__select {
+    width: 100%;
+    height: 56px;
+    border-radius: 5px;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    padding: 18px 24px;
+    box-shadow: 0px 0px 6px 0px rgba(204, 201, 201, 0.616);
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+  }
+
  
 
   
