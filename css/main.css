@@ -107,13 +107,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
   }
 
   .header__heading {
     font-size: 24px;
     font-weight: 800;
-    line-height: 32.74px;
     text-align: left;
   }
 
@@ -268,6 +266,10 @@
     text-align: left;
   }
 
+  .footer {
+    padding-bottom: 70px;
+  }
+
   .footer__container {
     display: flex;
     align-items: center;
@@ -280,6 +282,7 @@
     outline: none;
     background-color: white;
     border: 1px solid rgb(88, 85, 85);
+    cursor: pointer;
 
   }
 
