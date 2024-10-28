@@ -64,13 +64,21 @@
 
 /* FONTS START */
 @font-face {
+  font-display: swap; 
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/nunito-sans-v15-latin-300.woff2') format('woff2');
+}
+
+@font-face {
     font-display: swap; 
     font-family: 'Nunito Sans';
     font-style: normal;
     font-weight: 400;
     src: url('../fonts/nunito-sans-v15-latin-regular.woff2') format('woff2'); 
   }
-  /* nunito-sans-600 - latin */
+
   @font-face {
     font-display: swap; 
     font-family: 'Nunito Sans';
@@ -114,6 +122,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+    cursor: pointer;
   }
 
   .header__modes p {
@@ -121,6 +130,10 @@
     font-weight: 600;
     line-height: 21.82px;
     text-align: left;
+  }
+
+  .form {
+    margin-bottom: 48px;
   }
 
   .form__form {
@@ -196,6 +209,127 @@
     text-align: left;
   }
 
+
+  .countries {
+    margin-bottom: 50px;
+  }
+
+  .countries__list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .countries__item {
+    max-width: 264px;
+    width: 100%;
+    height: 336px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 6px 0px rgba(204, 201, 201, 0.616);
+
+    
+  }
+
+  .countries__item-features-wrapper {
+    padding: 24px;
+    padding-bottom: 38px;
+  }
  
+
+  .countries__item h2 {
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 26px;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+
+  .countries__item p {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: left;
+    margin-bottom: 8px;
+  }
+
+  .countries__item span {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 16px;
+    text-align: left;
+  }
+
+  .footer__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .footer button {
+    padding: 8px 16px;
+    outline: none;
+    background-color: white;
+    border: 1px solid rgb(88, 85, 85);
+
+  }
+
+
+  .footer__container button:first-child img {
+    transform: rotateZ(90deg);
+  }
+
+  .footer__container button:last-child img {
+    transform: rotateZ(-90deg);
+  }
+  
+
+.dark{
+  background-color: #202C36;
+  color:#fff;
+}
+
+.dark .header {
+  background-color: #2b3844;
+}
+
+.dark .form__input {
+  background-color: #2b3844;
+  color: white !important;
+  box-shadow: none;
+}
+
+
+.dark .form__input::placeholder {
+  color: white;
+}
+
+.dark .form__select {
+  background-color: #2b3844;
+  color: white ;
+  box-shadow: none;
+}
+
+.dark  .form__select-wrapper img {
+  background-color: #2b3844; 
+}
+
+.dark .countries__item {
+  box-shadow: 0px 0px 0px 0px;
+  background-color: #2b3844;
+}
+
+.dark .footer button {
+  background-color: #202C36;
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.dark .black-arrow {
+  display: none;
+}
+
+.dark .white-arrow {
+  display: block !important; 
+}
 
   

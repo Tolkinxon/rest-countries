@@ -7,14 +7,16 @@
     <link rel="stylesheet" href="css/main.css">
     <title>rest-countries</title>
 </head>
-<body>
+<body class="">
     <header class="header">
         <div class="container header-container">
             <h1 class="header__heading">Where in the world?</h1>
 
-            <div class="header__modes">
-                <img src="img/Group 3.svg" alt="light mode moon">
-                <p>Light Mode</p>
+            <div class="header__modes js-header-modes">
+                <img class="black-arrow" src="img/Group 3.svg" alt="light mode moon">
+                <img class="white-arrow" src="img/Group 3 (1).svg" alt="light mode moon" style="display: none;">
+                <p class="black-arrow">Dark Mode</p>
+                <p class="white-arrow" style="display: none;">Light Mode</p>
             </div>
         </div>
     </header>
@@ -25,11 +27,13 @@
                 <form class="form__form">
                     <label class="form__label">
                         <input class="form__input" type="text" placeholder="Search for a country…">
-                        <img src="img/icon-search-black.svg" alt="light mode searcha icon">
+                        <img class="black-arrow" src="img/icon-search-black.svg" alt="light mode searcha icon">
+                        <img class="white-arrow" src="img/icon-search-white.svg" alt="light mode searcha icon" style="display: none;">
                     </label>
 
                     <div class="form__select-wrapper js-form__select-wrapper">
-                        <img src="img/Group 2.svg" alt="light mode select icon">
+                        <img class="black-arrow" src="img/Group 2.svg" alt=""> 
+                        <img class="white-arrow" src="img/Group 2.1.svg" alt="" style="display: none;">
                         <select class="form__select">
                             <option value="" disabled selected hidden>Filter by Region</option>
                             <option value="">Africa</option>
@@ -40,7 +44,64 @@
             </div>
 
         </section>
+
+        <section class="countries">
+            <div class="container">
+                <ul class="countries__list">
+                    <li class="countries__item"> 
+                        <img src="img/flag-germany.png" alt="flag">
+                        <div class="countries__item-features-wrapper">
+                            <h2 class="js-country-name">Germany</h2>
+                            <p>Population: <span class="js-population">81.770900</span></p>
+                            <p>Region: <span class="js-region">Europe</span></p>
+                            <p>Capital: <span class="js-capital">Berlin</span></p>
+                        </div>
+                    </li>
+                    <li class="countries__item"> 
+                        <img src="img/flag-germany.png" alt="flag">
+                        <div class="countries__item-features-wrapper">
+                            <h2 class="js-country-name">Germany</h2>
+                            <p>Population: <span class="js-population">81.770900</span></p>
+                            <p>Region: <span class="js-region">Europe</span></p>
+                            <p>Capital: <span class="js-capital">Berlin</span></p>
+                        </div>
+                    </li>
+                    <li class="countries__item"> 
+                        <img src="img/flag-germany.png" alt="flag">
+                        <div class="countries__item-features-wrapper">
+                            <h2 class="js-country-name">Germany</h2>
+                            <p>Population: <span class="js-population">81.770900</span></p>
+                            <p>Region: <span class="js-region">Europe</span></p>
+                            <p>Capital: <span class="js-capital">Berlin</span></p>
+                        </div>
+                    </li>
+                    <li class="countries__item"> 
+                        <img src="img/flag-germany.png" alt="flag">
+                        <div class="countries__item-features-wrapper">
+                            <h2 class="js-country-name">Germany</h2>
+                            <p>Population: <span class="js-population">81.770900</span></p>
+                            <p>Region: <span class="js-region">Europe</span></p>
+                            <p>Capital: <span class="js-capital">Berlin</span></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
     </main>
+
+    <footer class="footer">
+        <div class="container footer__container">
+            <button class="js-prev">
+                <img class="black-arrow" src="img/Group 2.svg" alt=""> 
+                <img class="white-arrow" src="img/Group 2.1.svg" alt="" style="display: none;">
+            </button>
+            <p>1</p>
+            <button class="js-next">
+                <img class="black-arrow" src="img/Group 2.svg" alt=""> 
+                <img class="white-arrow" src="img/Group 2.1.svg" alt="" style="display: none;">
+            </button>
+        </div>
+    </footer>
     
     <script src="js/utils.js"></script>
     <script src="js/main.js"></script>
