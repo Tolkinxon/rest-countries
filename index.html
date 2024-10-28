@@ -24,9 +24,9 @@
     <main>
         <section class="form">
             <div class="container">
-                <form class="form__form">
+                <form class="form__form js-form">
                     <label class="form__label">
-                        <input class="form__input" type="text" placeholder="Search for a country…">
+                        <input class="form__input js-input" type="text" placeholder="Search for a country…">
                         <img class="black-arrow" src="img/icon-search-black.svg" alt="light mode searcha icon">
                         <img class="white-arrow" src="img/icon-search-white.svg" alt="light mode searcha icon" style="display: none;">
                     </label>
@@ -34,10 +34,15 @@
                     <div class="form__select-wrapper js-form__select-wrapper">
                         <img class="black-arrow" src="img/Group 2.svg" alt=""> 
                         <img class="white-arrow" src="img/Group 2.1.svg" alt="" style="display: none;">
-                        <select class="form__select">
+                        <select class="form__select js-select">
                             <option value="" disabled selected hidden>Filter by Region</option>
-                            <option value="">Africa</option>
-                            <option value="">America</option>
+                            <option value="all">All</option>
+                            <option value="africa">Africa</option>
+                            <option value="americas">Americas</option>
+                            <option value="antarctic">Antarctic</option>
+                            <option value="asia">Asia</option>
+                            <option value="europe">Europe</option>
+                            <option value="oceania">Oceania</option>
                         </select>
                     </div>
                 </form>
@@ -47,43 +52,18 @@
 
         <section class="countries">
             <div class="container">
-                <ul class="countries__list">
-                    <li class="countries__item"> 
-                        <img src="img/flag-germany.png" alt="flag">
-                        <div class="countries__item-features-wrapper">
-                            <h2 class="js-country-name">Germany</h2>
-                            <p>Population: <span class="js-population">81.770900</span></p>
-                            <p>Region: <span class="js-region">Europe</span></p>
-                            <p>Capital: <span class="js-capital">Berlin</span></p>
-                        </div>
-                    </li>
-                    <li class="countries__item"> 
-                        <img src="img/flag-germany.png" alt="flag">
-                        <div class="countries__item-features-wrapper">
-                            <h2 class="js-country-name">Germany</h2>
-                            <p>Population: <span class="js-population">81.770900</span></p>
-                            <p>Region: <span class="js-region">Europe</span></p>
-                            <p>Capital: <span class="js-capital">Berlin</span></p>
-                        </div>
-                    </li>
-                    <li class="countries__item"> 
-                        <img src="img/flag-germany.png" alt="flag">
-                        <div class="countries__item-features-wrapper">
-                            <h2 class="js-country-name">Germany</h2>
-                            <p>Population: <span class="js-population">81.770900</span></p>
-                            <p>Region: <span class="js-region">Europe</span></p>
-                            <p>Capital: <span class="js-capital">Berlin</span></p>
-                        </div>
-                    </li>
-                    <li class="countries__item"> 
-                        <img src="img/flag-germany.png" alt="flag">
-                        <div class="countries__item-features-wrapper">
-                            <h2 class="js-country-name">Germany</h2>
-                            <p>Population: <span class="js-population">81.770900</span></p>
-                            <p>Region: <span class="js-region">Europe</span></p>
-                            <p>Capital: <span class="js-capital">Berlin</span></p>
-                        </div>
-                    </li>
+                <ul class="countries__list js-countries-list">
+                   <template class="js-country-item-template">
+                        <li class="countries__item"> 
+                            <img class="js-flag" src="img/flag-germany.png" alt="flag">
+                            <div class="countries__item-features-wrapper">
+                                <h2 class="js-country-name">Germany</h2>
+                                <p>Population: <span class="js-population">81.770900</span></p>
+                                <p>Region: <span class="js-region">Europe</span></p>
+                                <p>Capital: <span class="js-capital">Berlin</span></p>
+                            </div>
+                        </li>
+                   </template>
                 </ul>
             </div>
         </section>
