@@ -6,6 +6,7 @@ const elCountriesList = document.querySelector('.js-countries-list');
 const elForm = document.querySelector('.js-form');
 const elInput = document.querySelector('.js-input');
 const elSelect = document.querySelector('.js-select');
+const elSort = document.querySelector('.js-sort');
 const elCurrentPage = document.querySelector('.js-current-page');
 const elPrevNextBtns = document.querySelector('.js-prev-next-btns');
 
@@ -39,12 +40,37 @@ function render(arr, node) {
     })
     node.appendChild(fragment);
 }
- 
+
+const sortingObj = {
+    ["a-z"]: function(a, b){
+      const A = a.name.common.toString().toLowerCase().charCodeAt(0);
+      const B = b.name.common.toString().toLowerCase().charCodeAt(0);
+      console.log(A,B);
+      return A - B;
+      },
+  
+    ["z-a"]: function(a, b){
+      const A = a.name.common.toString().toLowerCase().charCodeAt(0);
+      const B = b.name.common.toString().toLowerCase().charCodeAt(0);
+      console.log(A,B);
+      return B - A;
+      },
+  
+    ['1-9']: function(a, b){
+        return a.population - b.population
+    },
+  
+    ['9-1']: function(a, b){
+      return b.population - a.population
+    }
+}
+
 let counter = 1;
 let currentData = []
 function pagination(list) {
     elCurrentPage.textContent = list;
-    return currentData.slice((list * 20) - 20, list * 20)
+    const slicedData = currentData.slice((list * 20) - 20, list * 20);
+    return slicedData;
 }
 
 ;(async () => {
@@ -64,8 +90,7 @@ async function region(region) {
         currentData = data;
         counter = 1;
         const page = pagination(1);
-        render(page, elCountriesList);
-        return
+        return page
     }
 
 
@@ -74,17 +99,24 @@ async function region(region) {
     currentData = data;
     counter = 1;
     const page = pagination(1);
-    render(page, elCountriesList);
+    return page
 }
 
 
-elForm.addEventListener('submit', (evt) => {
+elForm.addEventListener('submit', async (evt) => {
     evt.preventDefault();
 
     const selectedRegion = elSelect.value;
     const searchByName = elInput.value;
+    const sortingValue = elSort.value;
 
-    region(selectedRegion);   
+
+    
+    const page = await region(selectedRegion); 
+
+    page.sort(sortingObj[sortingValue])
+
+    render(page, elCountriesList);  
 })
 
 elPrevNextBtns.addEventListener('click', (evt)=>{
@@ -101,4 +133,6 @@ elPrevNextBtns.addEventListener('click', (evt)=>{
         render(page, elCountriesList);
     }
 })
+
+
 
