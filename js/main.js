@@ -39,7 +39,7 @@ function render(arr, node) {
     })
     node.appendChild(fragment);
 }
-
+ 
 let counter = 1;
 let currentData = []
 function pagination(list) {
@@ -78,7 +78,7 @@ async function region(region) {
 }
 
 
-elForm.addEventListener('change', (evt) => {
+elForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
     const selectedRegion = elSelect.value;
