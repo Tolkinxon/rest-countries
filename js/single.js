@@ -27,11 +27,14 @@ let currentCoutry = {};
     
     currentCoutry = data.find(item => item.area == id);
 
-    const {flags, population, region, capital, name, name:{ common }, area} = currentCoutry;
+    const {flags, population, region, capital, name, name:{ common }, area, currencies, tld, languages} = currentCoutry;
     elImg.src = flags.png;
     elName.textContent = common;
-
+    elNativeName.textContent = name['official'];
     elPopulation,textContent = population;
     elRegion.textContent = region;
     elCapital.textContent = capital;
+    elDomain.textContent = tld[0];
+    elCurrency.textContent = Object.values(currencies)[0].name;
+    elLanguage.textContent = Object.values(languages);
 })()
