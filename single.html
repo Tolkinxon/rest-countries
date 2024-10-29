@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <title>rest-countries</title>
+</head>
+<body class="">
+    <header class="header">
+        <div class="container header-container">
+            <h1 class="header__heading">Where in the world?</h1>
+
+            <div class="header__modes js-header-modes">
+                <img class="black-arrow" src="img/Group 3.svg" alt="light mode moon">
+                <img class="white-arrow" src="img/Group 3 (1).svg" alt="light mode moon" style="display: none;">
+                <p class="black-arrow">Dark Mode</p>
+                <p class="white-arrow" style="display: none;">Light Mode</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <a  class="hero__back-btn form__submit" href="./index.html">
+                    <img class="black-arrow" src="img/call-made.svg" alt=""> 
+                    <img class="white-arrow" src="img/call-made (1).svg" alt="" style="display: none;">
+                    Back
+                </a>
+            </div>
+        </section>
+
+        <section class="country-info">
+            <div class="container country-info__container">
+                <img class="country-info__img js-country-info-img" src="img/flag-germany.png" alt="">
+
+                <div class="country-info__right-side">
+                    <h2 class="country-info__heading js-country-name">Germany</h2>
+
+                    <div class="country-info__info-wrapper">
+                        <div>
+                            <p>Native Name: <span class="js-native-name">81.770900</span></p>
+                            <p>Population: <span class="js-population">81.770900</span></p>
+                            <p>Region: <span class="js-region">Europe</span></p>
+                            <p>Sub Region: <span class="js-sub-region">Europe</span></p>
+                            <p>Capital: <span class="js-capital">Berlin</span></p>
+                        </div>
+                        <div>
+                            <p>Top Level Domain: <span class="js-domain">Berlin</span></p>
+                            <p>Currencies: <span class="js-currency">Berlin</span></p>
+                            <p>Languages: <span class="js-language">Berlin</span></p>
+                        </div>
+                    </div>
+                    <div class="country-info__border js-border-coutry">
+                        <p>Border Countries:</p> 
+                        <i>France</i>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    
+    <script src="js/utils.js"></script>
+    <script src="js/single.js"></script>
+</body>
+</html>

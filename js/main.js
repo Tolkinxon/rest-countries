@@ -20,21 +20,37 @@ elFormSelectWrapper.addEventListener('click',() => {
     else {elFormSelectWrapper.children[0].classList.toggle('rotate')}
 })
 
-function render(arr, node) {
+function render(arr, node, pattertTitle = '') {
     if(arr.length == 0) return alert('There is have no countries check your internet connection');
+
+
+
 
     node.innerHTML = '';
     const fragment = document.createDocumentFragment();
 
-    arr.forEach(({flags, population, region, capital, name, name:{ common }}) => {
+    arr.forEach(({flags, population, region, capital, name, name:{ common }, area}) => {
         
         const clone = elCountryItemTemplate.cloneNode(true);
 
+        if(pattertTitle == '' || pattertTitle.source == '(?:)'){
+            clone.querySelector('.js-country-name').textContent = common;
+            clone.querySelector('.js-capital').textContent = capital;
+          } else {
+            clone.querySelector('.js-country-name').innerHTML = common.toString().replaceAll(pattertTitle, (match) => {
+              return `<mark style="color: white; background-color: gray;">${match}</mark>`
+            })
+
+            clone.querySelector('.js-capital').innerHTML = capital.toString().replaceAll(pattertTitle, (match) => {
+                return `<mark style="color: white; background-color: gray;">${match}</mark>`
+            })
+          }
+
         clone.querySelector('.js-flag').src = flags.png;
-        clone.querySelector('.js-country-name').textContent = common;
         clone.querySelector('.js-population').textContent = population;
         clone.querySelector('.js-region').textContent = region;
-        clone.querySelector('.js-capital').textContent = capital;
+        clone.querySelector('.js-item').dataset.id = area; 
+        
 
         fragment.appendChild(clone);
     })
@@ -69,6 +85,7 @@ let counter = 1;
 let currentData = []
 function pagination(list) {
     elCurrentPage.textContent = list;
+    
     const slicedData = currentData.slice((list * 20) - 20, list * 20);
     return slicedData;
 }
@@ -77,8 +94,10 @@ function pagination(list) {
     const response = await fetch('https://restcountries.com/v3.1/all');
     const data = await response.json();
     currentData =  data;
-    counter = 1;
-    const page = pagination(1);
+    console.log(data);
+    
+    
+    const page = pagination(counter);
     render(page, elCountriesList);
 })()
 
@@ -88,8 +107,7 @@ async function region(region) {
         const response = await fetch(`https://restcountries.com/v3.1/all`);
         const data = await response.json();
         currentData = data;
-        counter = 1;
-        const page = pagination(1);
+        const page = pagination(counter);
         return page
     }
 
@@ -97,38 +115,81 @@ async function region(region) {
     const response = await fetch(`https://restcountries.com/v3.1/region/${region}`);
     const data = await response.json();
     currentData = data;
-    counter = 1;
-    const page = pagination(1);
+    const page = pagination(counter);
     return page
 }
 
+let temporaryRegion = 'all';
+let temporaryTitle = '';
 
 elForm.addEventListener('submit', async (evt) => {
     evt.preventDefault();
 
     const selectedRegion = elSelect.value;
-    const searchByName = elInput.value;
+    const searchByName = elInput.value.trim().toLowerCase();
     const sortingValue = elSort.value;
 
+    const pattertTitle = RegExp(searchByName, 'gi')
+    
+    if(searchByName) {
+        elSelect.disabled = true;
+        elPrevNextBtns.classList.add('visually-hidden');
+
+        const responseName = await fetch(`https://restcountries.com/v3.1/name/${searchByName}`);
+        const dataName = await responseName.json();
+
+        const responseCapital = await fetch(`https://restcountries.com/v3.1/capital/${searchByName}`);
+        const dataCapital = await responseCapital.json();
+
+        console.log(Array.isArray(dataName));
+        console.log(Array.isArray(dataCapital));
+
+        if(Array.isArray(dataName)) {
+            render(dataName, elCountriesList, pattertTitle);
+        }
+
+        if(Array.isArray(dataCapital)) {
+            render(dataCapital, elCountriesList, pattertTitle);
+        }
+
+
+        return
+    }
+
+
+    elSelect.disabled = false;
+    elPrevNextBtns.classList.remove('visually-hidden');
+    if(temporaryRegion !== selectedRegion || temporaryTitle !== pattertTitle){
+        counter = 1;
+    }
+    temporaryStorage = selectedRegion;
+    temporaryTitle = pattertTitle;
 
     
     const page = await region(selectedRegion); 
 
     page.sort(sortingObj[sortingValue])
 
-    render(page, elCountriesList);  
+    render(page, elCountriesList, pattertTitle);  
+})
+
+elCountriesList.addEventListener('click', (evt) => {
+    const id = evt.target.dataset.id;
+    setItem('id', id);
+    window.location = '/single.html'
 })
 
 elPrevNextBtns.addEventListener('click', (evt)=>{
+    
     if(evt.target.matches('.js-prev')){
-        counter = counter == 1 ? 1 : --counter;
+        counter = counter <= 1 ? 1 : --counter;
         const page = pagination(counter);
         render(page, elCountriesList);
     }
 
     if(evt.target.matches('.js-next')){
         const maxList = Math.ceil(currentData.length / 20)
-        counter = counter == maxList ? maxList : ++counter;
+        counter = counter >= maxList ? maxList : ++counter;
         const page = pagination(counter);
         render(page, elCountriesList);
     }

@@ -184,6 +184,7 @@
     right: 0px;
     background-color: white;
     padding-right: 22px;
+    z-index: 999;
 }
 
 .rotate {
@@ -237,8 +238,17 @@
     height: 336px;
     border-radius: 5px;
     box-shadow: 0px 0px 6px 0px rgba(204, 201, 201, 0.616);
+    position: relative;
+  }
 
-    
+  .countries-item-surface {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: transparent;
+    z-index: 99;
   }
 
   .countries__item img {
@@ -264,7 +274,8 @@
     margin-bottom: 16px;
   }
 
-  .countries__item p {
+  .countries__item p,   
+  .country-info p {
     font-size: 14px;
     font-weight: 600;
     line-height: 16px;
@@ -272,7 +283,8 @@
     margin-bottom: 8px;
   }
 
-  .countries__item span {
+  .countries__item span,   
+  .country-info span {
     font-size: 14px;
     font-weight: 300;
     line-height: 16px;
@@ -306,6 +318,72 @@
 
   .footer__container button:last-child img {
     transform: rotateZ(-90deg);
+  }
+
+  .hero {
+    margin-bottom: 80px;
+  }
+
+  .hero__back-btn {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 5px 10px;    
+  }
+
+  .country-info__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .country-info__img {
+    max-width: 460px;
+    width: 100%;
+    height: 301px;
+    margin-right: 120px;
+    border-radius: 5px;
+
+  }
+
+  .country-info__heading {
+    margin-bottom: 23px;
+  }
+
+  .country-info__right-side {
+    max-width: 498px;
+    width: 100%;
+  }
+  
+  .country-info__info-wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    justify-content: space-between;
+  }
+
+  .country-info__border {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: start;
+    flex-wrap: wrap;
+
+  }
+
+  i {
+    font-style: normal;
+    padding: 4px 8px;
+    background-color: white;
+    box-shadow: 0px 0px 6px 0px rgba(204, 201, 201, 0.616);
+  }
+
+  .dark i {
+    background-color: #2b3844;
+    box-shadow: none
   }
   
 
