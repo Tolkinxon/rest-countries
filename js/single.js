@@ -45,6 +45,6 @@ const id = getItem('id');
         elBorderCountry.append(i);
     });
 
-    elSubRegion.textContent = currentCoutry?.subregion;
+    elSubRegion.textContent = subregion;
     
 })()

@@ -32,17 +32,17 @@ function render(arr, node, pattertTitle = '') {
 
         if(pattertTitle == '' || pattertTitle.source == '(?:)'){
             clone.querySelector('.js-country-name').textContent = common;
-            clone.querySelector('.js-capital').textContent = capital;
+            // clone.querySelector('.js-capital').textContent = capital;
           } else {
             clone.querySelector('.js-country-name').innerHTML = common.toString().replaceAll(pattertTitle, (match) => {
               return `<mark style="color: white; background-color: gray;">${match}</mark>`
             })
 
-            clone.querySelector('.js-capital').innerHTML = capital.toString().replaceAll(pattertTitle, (match) => {
-                return `<mark style="color: white; background-color: gray;">${match}</mark>`
-            })
+            // clone.querySelector('.js-capital').innerHTML = capital.toString().replaceAll(pattertTitle, (match) => {
+            //     return `<mark style="color: white; background-color: gray;">${match}</mark>`
+            // })
           }
-
+        clone.querySelector('.js-capital').textContent = capital;
         clone.querySelector('.js-flag').src = flags.png;
         clone.querySelector('.js-population').textContent = population;
         clone.querySelector('.js-region').textContent = region;
@@ -94,8 +94,6 @@ function pagination(list) {
 
     // const responseAlpha = await fetch('https://restcountries.com/v3.1/alpha/uz');
     // const dataAlpha = await responseAlpha.json();
-    console.log(data);
-    
     
     const page = pagination(counter);
     render(page, elCountriesList);
@@ -131,33 +129,21 @@ elForm.addEventListener('submit', async (evt) => {
     const pattertTitle = RegExp(searchByName, 'gi')
     
     if(searchByName) {
-        elSelect.disabled = true;
-        elPrevNextBtns.classList.add('visually-hidden');
-
         const responseName = await fetch(`https://restcountries.com/v3.1/name/${searchByName}`);
         const dataName = await responseName.json();
 
-        const responseCapital = await fetch(`https://restcountries.com/v3.1/capital/${searchByName}`);
-        const dataCapital = await responseCapital.json();
+        // const responseCapital = await fetch(`https://restcountries.com/v3.1/capital/${searchByName}`);
+        // const dataCapital = await responseCapital.json();
 
-        console.log(Array.isArray(dataName));
-        console.log(Array.isArray(dataCapital));
-
-        if(Array.isArray(dataName)) {
-            render(dataName, elCountriesList, pattertTitle);
-        }
-
-        if(Array.isArray(dataCapital)) {
-            render(dataCapital, elCountriesList, pattertTitle);
-        }
-
-
+        currentData =  dataName;
+        const page = pagination(counter);
+        page.sort(sortingObj[sortingValue])
+        render(page, elCountriesList, pattertTitle);
+       
         return
     }
 
 
-    elSelect.disabled = false;
-    elPrevNextBtns.classList.remove('visually-hidden');
     if(temporaryRegion !== selectedRegion || temporaryTitle !== pattertTitle){
         counter = 1;
     }
