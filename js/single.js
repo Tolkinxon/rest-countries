@@ -20,14 +20,13 @@ if(mode){
 elModes.addEventListener('click',() => {document.body.classList.toggle('dark');setItem('mode', document.body.classList.value);})
 
 const id = getItem('id');
-let currentCoutry = {};
 ;(async () => {
     const response = await fetch('https://restcountries.com/v3.1/all');
     const data = await response.json();
     
-    currentCoutry = data.find(item => item.area == id);
+    const currentCoutry = data.find(item => item.area == id);
 
-    const {flags, population, region, capital, name, name:{ common }, area, currencies, tld, languages} = currentCoutry;
+    const {flags, population, region, capital, name, name:{ common }, area, currencies, tld, languages, borders, subregion} = currentCoutry;
     elImg.src = flags.png;
     elName.textContent = common;
     elNativeName.textContent = name['official'];
@@ -37,4 +36,15 @@ let currentCoutry = {};
     elDomain.textContent = tld[0];
     elCurrency.textContent = Object.values(currencies)[0].name;
     elLanguage.textContent = Object.values(languages);
+
+    elBorderCountry.innerHTML = '<p>Border Countries:</p>';
+    
+    borders?.forEach(element => {
+        const i = document.createElement('i');
+        i.textContent = element;
+        elBorderCountry.append(i);
+    });
+
+    elSubRegion.textContent = currentCoutry?.subregion;
+    
 })()

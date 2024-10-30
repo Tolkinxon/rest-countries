@@ -91,6 +91,9 @@ function pagination(list) {
     const response = await fetch('https://restcountries.com/v3.1/all');
     const data = await response.json();
     currentData =  data;
+
+    // const responseAlpha = await fetch('https://restcountries.com/v3.1/alpha/uz');
+    // const dataAlpha = await responseAlpha.json();
     console.log(data);
     
     
@@ -169,7 +172,7 @@ elForm.addEventListener('submit', async (evt) => {
     render(page, elCountriesList, pattertTitle);  
 })
 
-elCountriesList.addEventListener('click', (evt) => {
+elCountriesList.addEventListener('dblclick', (evt) => {
     findItem(evt.target)
 })
 
