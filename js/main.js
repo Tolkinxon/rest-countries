@@ -23,9 +23,6 @@ elFormSelectWrapper.addEventListener('click',() => {
 function render(arr, node, pattertTitle = '') {
     if(arr.length == 0) return alert('There is have no countries check your internet connection');
 
-
-
-
     node.innerHTML = '';
     const fragment = document.createDocumentFragment();
 
@@ -121,7 +118,6 @@ async function region(region) {
 
 let temporaryRegion = 'all';
 let temporaryTitle = '';
-
 elForm.addEventListener('submit', async (evt) => {
     evt.preventDefault();
 
@@ -174,10 +170,18 @@ elForm.addEventListener('submit', async (evt) => {
 })
 
 elCountriesList.addEventListener('click', (evt) => {
-    const id = evt.target.dataset.id;
-    setItem('id', id);
-    window.location = '/single.html'
+    findItem(evt.target)
 })
+
+function findItem (elem) {
+    if(elem.matches('.js-item')){
+        const id = elem.dataset.id;
+        setItem('id', id);
+        window.location = '/single.html'
+        return        
+    }
+    findItem(elem.parentElement)
+}
 
 elPrevNextBtns.addEventListener('click', (evt)=>{
     
