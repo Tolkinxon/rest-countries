@@ -14,6 +14,11 @@ if(mode){
     document.body.classList.add('dark');
 }
 
+elSelect.value = getItem('prevRegion');
+elInput.value = getItem('prevTitle');
+let counter = getItem('counter');
+
+
 elModes.addEventListener('click',() => {document.body.classList.toggle('dark');setItem('mode', document.body.classList.value);})
 elFormSelectWrapper.addEventListener('click',() => { 
     if(getItem('mode')){elFormSelectWrapper.children[1].classList.toggle('rotate')}
@@ -58,14 +63,12 @@ const sortingObj = {
     ["a-z"]: function(a, b){
       const A = a.name.common.toString().toLowerCase().charCodeAt(0);
       const B = b.name.common.toString().toLowerCase().charCodeAt(0);
-      console.log(A,B);
       return A - B;
       },
   
     ["z-a"]: function(a, b){
       const A = a.name.common.toString().toLowerCase().charCodeAt(0);
       const B = b.name.common.toString().toLowerCase().charCodeAt(0);
-      console.log(A,B);
       return B - A;
       },
   
@@ -78,7 +81,6 @@ const sortingObj = {
     }
 }
 
-let counter = 1;
 let currentData = []
 function pagination(list) {
     elCurrentPage.textContent = list;
@@ -117,14 +119,25 @@ async function region(region) {
     return page
 }
 
-let temporaryRegion = 'all';
-let temporaryTitle = '';
+
 elForm.addEventListener('submit', async (evt) => {
     evt.preventDefault();
 
     const selectedRegion = elSelect.value;
     const searchByName = elInput.value.trim().toLowerCase();
     const sortingValue = elSort.value;
+
+    const prevRegion = getItem('prevRegion')
+    const prevTitle = getItem('prevTitle')
+
+    if(prevRegion != selectedRegion || prevTitle != searchByName) {
+        counter = 1;
+        setItem('counter', counter)
+    }
+
+
+    setItem('prevRegion', selectedRegion)
+    setItem('prevTitle', searchByName)
 
     const pattertTitle = RegExp(searchByName, 'gi')
     
@@ -139,22 +152,15 @@ elForm.addEventListener('submit', async (evt) => {
         const page = pagination(counter);
         page.sort(sortingObj[sortingValue])
         render(page, elCountriesList, pattertTitle);
-       
         return
     }
-
-
-    if(temporaryRegion !== selectedRegion || temporaryTitle !== pattertTitle){
-        counter = 1;
-    }
-    temporaryStorage = selectedRegion;
-    temporaryTitle = pattertTitle;
+   
 
     
     const page = await region(selectedRegion); 
-
+    console.log(page);
+    
     page.sort(sortingObj[sortingValue])
-
     render(page, elCountriesList, pattertTitle);  
 })
 
@@ -173,9 +179,9 @@ function findItem (elem) {
 }
 
 elPrevNextBtns.addEventListener('click', (evt)=>{
-    
     if(evt.target.matches('.js-prev')){
         counter = counter <= 1 ? 1 : --counter;
+        setItem("counter", counter);
         const page = pagination(counter);
         render(page, elCountriesList);
     }
@@ -183,10 +189,18 @@ elPrevNextBtns.addEventListener('click', (evt)=>{
     if(evt.target.matches('.js-next')){
         const maxList = Math.ceil(currentData.length / 20)
         counter = counter >= maxList ? maxList : ++counter;
+        setItem("counter", counter);
         const page = pagination(counter);
         render(page, elCountriesList);
     }
 })
+
+window.addEventListener("beforeunload", function (event) {
+    event.preventDefault();
+    setItem('prevRegion', 'all')
+    setItem('prevTitle', '')
+    setItem('counter', 1);
+});
 
 
 
